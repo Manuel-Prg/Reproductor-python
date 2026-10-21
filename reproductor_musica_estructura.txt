@@ -1,0 +1,47 @@
+reproductor_musica/
+│
+├── assets/                       # Recursos estáticos de la aplicación
+│   ├── covers/                   # Portadas predeterminadas o miniaturas (PNG/JPG)
+│   │   └── default_cover.png
+│   └── icons/                    # Íconos de la interfaz (play, pause, buscar, config)
+│
+├── database/                     # Scripts y configuración de persistencia
+│   ├── schema.sql                # Script DDL para crear la BD y tablas en MySQL/XAMPP
+│   └── seed.sql                  # Datos de prueba (canciones iniciales)
+│
+├── src/                          # Código fuente del sistema
+│   ├── __init__.py
+│   │
+│   ├── config/                   # Parámetros y constantes globales
+│   │   ├── __init__.py
+│   │   ├── settings.py           # Credenciales de BD, rutas base, etc.
+│   │   └── styles.py             # Paleta de colores (hexadecimales) y fuentes de Tkinter
+│   │
+│   ├── database/                 # Capa de datos / Acceso a MySQL
+│   │   ├── __init__.py
+│   │   ├── conexion.py           # Conexión con mysql-connector-python
+│   │   └── cancion_dao.py        # Consultas SQL / CRUD (SELECT, INSERT, DELETE)
+│   │
+│   ├── core/                     # Capa de lógica de negocio y motor de audio
+│   │   ├── __init__.py
+│   │   ├── audio_player.py       # Wrapper de pygame.mixer (play, pause, stop, volumen)
+│   │   └── playlist_manager.py   # Lógica de listas, cola de reproducción y filtros
+│   │
+│   └── ui/                       # Capa de presentación (Interfaz Gráfica Tkinter)
+│       ├── __init__.py
+│       ├── app_gui.py            # Ventana principal y ensamble de componentes
+│       └── components/           # Widgets personalizados o vistas modulares
+│           ├── __init__.py
+│           ├── navbar.py         # Barra superior (buscador y configuración)
+│           ├── card_cancion.py   # Tarjeta individual con portada, títulos y botón Play
+│           └── player_bar.py     # Barra inferior de controles y volumen
+│
+├── docs/                         # Documentación de ingeniería de software
+│   ├── diagrama_clases.png
+│   ├── diagrama_estados.png
+│   ├── diagrama_er.png
+│   └── Documentacion_Proyecto.docx # Plantilla de la materia
+│
+├── main.py                       # Punto de entrada para ejecutar la aplicación
+├── requirements.txt              # Dependencias del proyecto (pygame-ce, mysql-connector-python)
+└── README.md                     # Instrucciones de instalación y uso
