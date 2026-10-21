@@ -55,3 +55,5 @@ reproductor_musica/
    ```bash
    python main.py
    ```
+git config --global user.email "tu-correo@ejemplo.com"
+git config --global user.name "Tu Nombre"
