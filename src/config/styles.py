@@ -17,3 +17,7 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 #se optiene la ruta mediante el metodo path 
 ASSETS_DIR = os.path.join(BASE_DIR, "assets")
 ICONS_DIR = os.path.join(ASSETS_DIR, "icons")
+
+#condifugarción para la base de datos
+DB_DIR = os.path.join(BASE_DIR, "database")
+DB_PATH = os.path.join(DB_DIR, "database.db")
