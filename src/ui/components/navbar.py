@@ -1,11 +1,11 @@
 import os
 import tkinter as tk
-from src.config.styles import COLOR_PURPLE, ICONS_DIR
+from src.config.styles import COLOR_PURPLE, ICONS_DIR,COLOR_NAVBAR_BG
 
 
 class Navbar(tk.Frame):
     def __init__(self, root):
-        super().__init__(root, bg="#ffffff", height=60)
+        super().__init__(root, bg=COLOR_NAVBAR_BG, height=60)
         self.pack_propagate(False)
 
         #buscardor

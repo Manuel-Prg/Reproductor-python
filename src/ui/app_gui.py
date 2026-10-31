@@ -1,7 +1,7 @@
 import os
 import tkinter as tk
 from tkinter import filedialog
-from src.config.styles import COLOR_PURPLE, COLOR_BG, COLOR_CARD_BG, ICONS_DIR
+from src.config.styles import COLOR_PURPLE, COLOR_BG, ICONS_DIR
 from src.core.audio_player import AudioPlayer
 from src.ui.components.card_cancion import CardCancion
 from src.ui.components.player_bar import PlayerBar
@@ -59,7 +59,7 @@ class APPMusicPlayer(tk.Tk):
         #mostramos el estado incial de la app
         self.actualizar_vista_canciones()
 
-        def abrir_directorio(self):
+    def abrir_directorio(self):
 
             ruta = filedialog.askdirectory(title="Seleccionar carpeta de música")
             if not ruta:
@@ -85,14 +85,11 @@ class APPMusicPlayer(tk.Tk):
 
             self.actualizar_vista_canciones()
 
-        def actualizar_vista_canciones(self):
+    def actualizar_vista_canciones(self):
             #limpiar el frame de las cards 
-
             for widget in self.frame_grid.winfo_children():
                 widget.destroy()
-
             #si no hay canciones, mostramos un mensaje al usuario para agregar la carpeta de musica
-
             if not self.canciones:
                 frame_vacio = tk.Frame(self.frame_grid, bg=COLOR_BG)
                 frame_vacio.place(relx=0.5, rely=0.5, anchor="center")
@@ -108,7 +105,7 @@ class APPMusicPlayer(tk.Tk):
                     text = "No hay canciones disponibles.\nAgrega una carpeta de música para comenzar.",
                     font = ("Segoe UI", 12),
                     bg = COLOR_BG,  
-                    fg = "FFFFFF"
+                    fg = "#FFFFFF"
                 ).pack(pady=(0, 8))
 
                 tk.Label(
@@ -121,7 +118,7 @@ class APPMusicPlayer(tk.Tk):
                     padx=16,
                     cursor="hand2",
                     bg = COLOR_BG,  
-                    fg = "FFFFFF"
+                    fg = "#FFFFFF"
                 ).pack(pady=(0, 8))
 
                 tk.Button(
@@ -135,21 +132,21 @@ class APPMusicPlayer(tk.Tk):
                 ).pack()
                 return
 
-        columnas  = 4
+            columnas  = 4
 
-        for idx, cancion in enumerate(self.canciones):
-            f = idx // columnas
-            c = idx // columnas
-            card = CardCancion(self.frame_grid, cancion, self.reproduciendo)
-            card.grid(row=f, column=c, padx=10, pady=10, sticky="nsew")
+            for idx, cancion in enumerate(self.canciones):
+                f = idx // columnas
+                c = idx // columnas
+                card = CardCancion(self.frame_grid, cancion, self.reproduciendo)
+                card.grid(row=f, column=c, padx=10, pady=10, sticky="nsew")
 
-        for c in range(columnas):
-            self.frame_grid.grid_columnconfigure(c, weight=1)
+            for c in range(columnas):
+                    self.frame_grid.grid_columnconfigure(c, weight=1)
 
-        filas = (len(self.canciones) + columnas - 1) // columnas
+            filas = (len(self.canciones) + columnas - 1) // columnas
 
-        for f in range(filas):
-            self.frame_grid.grid_rowconfigure(f, weight=1)
+            for f in range(filas):
+                    self.frame_grid.grid_rowconfigure(f, weight=1)
 
     def reproducir_cancion(self, cancion):
         self.cancion_actual = cancion
@@ -157,6 +154,8 @@ class APPMusicPlayer(tk.Tk):
         self.audio.reproducir(cancion["ruta"])
         self.player_bar.set_play_icon(True)
 
+    def set_volume(self, valor):
+        self.audio.ajustar_volumen(valor)
 
     def toggle_play(self):
 

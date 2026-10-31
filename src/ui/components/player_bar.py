@@ -1,6 +1,5 @@
 import os
 import tkinter as tk
-from turtle import left, right
 from src.config.styles import COLOR_BAR_BG, ICONS_DIR
 
 class PlayerBar(tk.Frame):
@@ -9,7 +8,7 @@ class PlayerBar(tk.Frame):
         self.pack_propagate(tk.FALSE)
 
         self.icon_corazon = tk.PhotoImage(file=os.path.join(ICONS_DIR, "heart.svg"))
-        self.icon_anterior = tk.PhotoImage(file=os.path.join(ICONS_DIR, "previous.svg"))
+        self.icon_anterior = tk.PhotoImage(file=os.path.join(ICONS_DIR, "prev.svg"))
         self.icon_reproducir = tk.PhotoImage(file=os.path.join(ICONS_DIR, "play.svg"))
         self.icon_pausar = tk.PhotoImage(file=os.path.join(ICONS_DIR, "pause.svg"))
         self.icon_siguiente = tk.PhotoImage(file=os.path.join(ICONS_DIR, "next.svg"))
@@ -45,14 +44,14 @@ class PlayerBar(tk.Frame):
         track = tk.Frame(self, bg=COLOR_BAR_BG)
         track.pack(fill="x", padx=30, pady=(2, 6))
 
-        tk.Label(track, text="0:00", bg= COLOR_BAR_BG, font= ("Arial", 10, "bold")).pack(side=left, padx = 5 )
-        tk.Scale(track, from_=0, to=100, orient="horizontal", showvalue=False).pack(side="center", extend=True, padx=8)
-        tk.Label(track, text="0:00", bg= COLOR_BAR_BG, font= ("Arial", 10, "bold")).pack(side=right, padx = 5 )
+        tk.Label(track, text="0:00", bg= COLOR_BAR_BG, font=("Arial", 10, "bold")).pack(side=tk.LEFT, padx = 5 )
+        tk.Scale(track, from_=0, to=100, orient="horizontal").pack(side="left", fill="x", expand=True, padx=8)
+        tk.Label(track, text="0:00", bg= COLOR_BAR_BG, font=("Arial", 10, "bold")).pack(side=tk.RIGHT, padx = 5 )
 
-        def set_play_icon(self, reproduciendo):
-            nuevo_icono = self.icon_pausar if reproduciendo else self.icon_reproducir
-            self.btn_play.config(image = nuevo_icono)
-            self.btn_play.image = nuevo_icono
+    def set_play_icon(self, reproduciendo):
+        nuevo_icono = self.icon_pausar if reproduciendo else self.icon_reproducir
+        self.btn_play.config(image = nuevo_icono)
+        self.btn_play.image = nuevo_icono
             
 #el botón de pausa tiene ser una función tiene que escuchar la variable reproduciendo
 #btn_play con una condicional if else

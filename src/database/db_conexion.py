@@ -1,7 +1,6 @@
-
 import os
 import sqlite3
-from src.config.styles import  BASE_DIR, DB_PATH
+from src.config.styles import BASE_DIR, DB_PATH
 
 def obtener_conexion():
 
@@ -30,7 +29,7 @@ def inicializar_base_de_datos(ruta_db = None):
             cursor = conexion.cursor()
 
 
-            if os.path.exits(ruta_schema):
+            if os.path.exists(ruta_schema):
                 with open (ruta_schema, "r", encoding="utf-8") as archivo_sql:
                     script_sql = archivo_sql.read()
                 cursor.executescript(script_sql)
