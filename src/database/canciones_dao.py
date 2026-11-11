@@ -81,3 +81,24 @@ def obtener_cancion_por_id(cancion_id, ruta_db = None):
     except sqlite3.Error as error:
         print(f"[Error DAO Canciones] Error al buscar canción con ID {cancion_id}: {error}")
     return None
+
+def buscar_canciones(termino, ruta_db= None):
+
+    if not termino or not termino.strip():
+
+        consulta = """
+            SELECT * FROM canciones
+            WHERE titulo LIKE ? OR artista LIKE ? OR album LIKE ?
+            ORDER BY fecha_agregado ASC;
+        """
+    patron = f"%{termino.strip()}%"
+
+    try:
+        with obtener_conexion(ruta_db) as conexion:
+            cursor = conexion.cursor()
+            cursor.execute(consulta, (patron, patron, patron))
+            filas = cursor.fetchall()
+            return [dict(f) for f in filas]
+    except sqlite3.Error as error:
+        print(f"[Error DAO Canciones] Error al buscar canciones con término '{termino}': {error}")
+        return []
