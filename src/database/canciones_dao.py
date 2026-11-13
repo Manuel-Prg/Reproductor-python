@@ -102,3 +102,70 @@ def buscar_canciones(termino, ruta_db= None):
     except sqlite3.Error as error:
         print(f"[Error DAO Canciones] Error al buscar canciones con término '{termino}': {error}")
         return []
+
+def alternar_favorito(cancion_id, ruta_db=None):
+
+    consulta_actualizar = """
+        UPDATE canciones
+        SET favorito = CASE WHEN favorito = 1 THEN 0 ELSE 1 END
+        WHERE id = ?
+        RETURNING favorito;
+    """
+    try:
+        with obtener_conexion(ruta_db) as conexion:
+            cursor = conexion.cursor()
+            cursor.execute(consulta_actualizar, (cancion_id,))
+            fila = cursor.fetchone()
+            conexion.commit()
+            if fila is not None:
+                return bool(fila["favorito"])
+    except sqlite3.Error as error:
+        print(f"[Error DAO Canciones] Error al alternar favorito para la canción con ID {cancion_id}: {error}")
+        return None
+    
+def obtener_favoritos(ruta_db=None):
+
+    consulta = """
+        SELECT * FROM canciones WHERE favoritos = 1 ORDER BY titulo COLLATE NOCASE ASC;"""
+
+    try:
+        with obtener_conexion(ruta_db) as conexion:
+            cursor = conexion.cursor()
+            cursor.execute(consulta)
+            filas = cursor.fetchall()
+            return [dict(f) for f in filas]
+        
+    except sqlite3.Error as error:
+        print(f"[Error DAO Canciones] Error al obtener canciones favoritas: {error}")
+        return []
+
+
+def eliminar_cancion(cancion_id, ruta_db=None):
+    consulta = """
+        DELETE FROM canciones WHERE id = ?;"""
+    try:
+        with obtener_conexion(ruta_db) as conexion:
+            cursor = conexion.cursor()
+            cursor.execute(consulta, (cancion_id,))
+            conexion.commit()
+            return cursor.rowcount > 0
+        
+    except sqlite3.Error as error:
+        print(f"[Error DAO Canciones] Error al eliminar canción con ID {cancion_id}: {error}")
+        return False
+
+
+def registrar_historial(canciones_id, ruta_db=None):
+
+    cansulta = """
+        INSERT INTO historial_reproduccion (cancion_id) VALUES (?);"""
+
+    try:
+        with obtener_conexion(ruta_db) as conexion:
+            cursor = conexion.cursor()
+            cursor.execute(cansulta, (canciones_id,))
+            conexion.commit()
+            return True
+    except sqlite3.Error as error:
+        print(f"[Error DAO Canciones] Error al registrar historial de reproducción para la canción con ID {canciones_id}: {error}")
+        return False
