@@ -18,8 +18,8 @@ class Navbar(tk.Frame):
         #btn_config = tk.BOTTOM(self, text="⚙️", bg="#ffffff", fg="#444444",bg=0, font=("Arial", 16), cursor="hand2")
         #btn_config.pack(side="right", padx=25)
 
-        self.icon_buscar = tk.PhotoImage(file=os.path.join(ICONS_DIR, "search.svg"))
-        self.icon_configuracion = tk.PhotoImage(file=os.path.join(ICONS_DIR, "settings.svg"))
+        self.icon_buscar = tk.PhotoImage(file=os.path.join(ICONS_DIR, "search.png"))
+        self.icon_configuracion = tk.PhotoImage(file=os.path.join(ICONS_DIR, "settings.png"))
 
         #Boton configuracion
         btn_config = tk.Button(
@@ -51,7 +51,7 @@ class Navbar(tk.Frame):
             font=("Arial", 12),
             bd = 0,
             relief = "flat",
-            placeholder="Buscar",
+            #placeholder="Buscar", Tkinter no soporta este parametro y bloquea la ejecución de la aplicación
             insertbackground = "white",
 
         )

@@ -15,9 +15,9 @@ class APPMusicPlayer(tk.Tk):
         self.minsize(800, 600)
         self.configure(bg=COLOR_BG)
 
-        self.icon_abrir_direct = tk.PhotoImage(file=os.path.join(ICONS_DIR, "folder_open.svg"))
-        self.icon_folder = tk.PhotoImage(file=os.path.join(ICONS_DIR, "folder.svg"))
-        self.icon_add = tk.PhotoImage(file=os.path.join(ICONS_DIR, "add.svg"))
+        self.icon_abrir_direct = tk.PhotoImage(file=os.path.join(ICONS_DIR, "folder_open.png"))
+        self.icon_folder = tk.PhotoImage(file=os.path.join(ICONS_DIR, "folder.png"))
+        self.icon_add = tk.PhotoImage(file=os.path.join(ICONS_DIR, "favorite.png"))
 
         #estado del audio
         self.audio = AudioPlayer()

@@ -7,12 +7,12 @@ class PlayerBar(tk.Frame):
         super().__init__(root, bg=COLOR_BAR_BG, height=60)
         self.pack_propagate(tk.FALSE)
 
-        self.icon_corazon = tk.PhotoImage(file=os.path.join(ICONS_DIR, "heart.svg"))
-        self.icon_anterior = tk.PhotoImage(file=os.path.join(ICONS_DIR, "prev.svg"))
-        self.icon_reproducir = tk.PhotoImage(file=os.path.join(ICONS_DIR, "play.svg"))
-        self.icon_pausar = tk.PhotoImage(file=os.path.join(ICONS_DIR, "pause.svg"))
-        self.icon_siguiente = tk.PhotoImage(file=os.path.join(ICONS_DIR, "next.svg"))
-        self.icon_volumen = tk.PhotoImage(file=os.path.join(ICONS_DIR, "volume.svg"))
+        self.icon_corazon = tk.PhotoImage(file=os.path.join(ICONS_DIR, "favorite.png"))
+        self.icon_anterior = tk.PhotoImage(file=os.path.join(ICONS_DIR, "arrow_left.png"))
+        self.icon_reproducir = tk.PhotoImage(file=os.path.join(ICONS_DIR, "play_arrow.png"))
+        self.icon_pausar = tk.PhotoImage(file=os.path.join(ICONS_DIR, "pause.png"))
+        self.icon_siguiente = tk.PhotoImage(file=os.path.join(ICONS_DIR, "arrow_right.png"))
+        self.icon_volumen = tk.PhotoImage(file=os.path.join(ICONS_DIR, "volume_up.png"))
 
         #CONTROLES CENTRALES
         controles = tk.Frame(self, bg=COLOR_BAR_BG)

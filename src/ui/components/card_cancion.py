@@ -29,7 +29,7 @@ class CardCancion(tk.Frame):
         tk.Label(info, text=cancion["artista"], bg= COLOR_CARD_BG, fg= COLOR_CARD_BG, font=("Arial", 8)).pack(side="top", anchor="w")
 
         if CardCancion._icon_play is None:
-            CardCancion._icon_play = tk.PhotoImage(file= os.path.join(ICONS_DIR, "play.svg"))
+            CardCancion._icon_play = tk.PhotoImage(file= os.path.join(ICONS_DIR, "play_arrow.png"))
         self._icon_play = CardCancion._icon_play
 
         btn_play = tk.Button(
