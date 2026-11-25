@@ -48,7 +48,21 @@ reproductor_musica/
 1. Instalar dependencias:
 
    ```bash
+   python -m venv .venv
+
+   .\.venv\Scripts\Activate.ps1
+
+   Si PowerShell marca error de permisos, corre una vez Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
    pip install -r requirements.txt
+
+   .\.venv\Scripts\python.exe -m ensurepip --upgrade
+   .\.venv\Scripts\python.exe -m pip install pygame-ce
+
+   -m pip install --upgrade pip
+
+   deactivate
+
    ```
 
 2. Ejecutar la aplicación:
