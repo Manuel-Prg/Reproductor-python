@@ -1,6 +1,7 @@
 import os
 import tkinter as tk
 from tkinter import tk
+from tkinter import filedialog
 from src.config.styles import (
     COLOR_BG,
     COLOR_NAVBAR_BG,
@@ -59,7 +60,43 @@ class configDialog(tk.Toplevel):
         if self.on_select_folder:
             self.icon_folder = tk.PhotoImage(
                 file=os.path.join(ICONS_DIR, "folder_open.png"))
+'''
+            btn_carpeta = tk.Button( 
+                                bg = COLOR_PURPLE,
+                                bd = 0,
+                                relief = "flat",
+                                cursor="hand2",
+                                command=self.abrir_directorio,
+                                ).pack(side="right", padx=10)
 
-            btn_carpeta = tk.Button(
-                
-            )
+
+                    
+    def abrir_directorio(self):
+        ruta = filedialog.askdirectory(title="Seleccionar carpeta de música")
+        if not ruta:
+            return
+                                
+        formatos = (".mp3", ".wav", ".ogg", ".flac")
+        self.canciones = []
+
+
+        try: 
+                        for i, archivos in enumerate(os.listdir(ruta)):
+                            if archivos.lower().endswith(formatos):
+                                nombre = os.path.splitext(archivos)[0]
+                                self.canciones.append(
+                                                {
+                                                    "id": i,
+                                                    "titulo": nombre,
+                                                    "artistra": "Arvhivo Local",
+                                                    "ruta": os.path.join(ruta, archivos)
+                                                }
+                                            )
+        except Exception as e:
+           print(f"hubo un error en leer el directorio seleccionado: {e}")
+
+
+'''
+
+
+
